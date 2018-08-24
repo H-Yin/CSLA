@@ -18,8 +18,15 @@ Input: m = 7, n = 3
 Output: 28
 */
 // DP
+/*
+             1   i=0 or j=0
+            /
+path[i][j] =    
+            \path[i-1][j] + path[i][j-1]  i>0,j>0
+*/
 class Solution {
 public:
+    // 返回值防止溢出
     unsigned long long uniquePaths(int m, int n) {
         vector<vector<long long>> path;
         path.resize(m, vector<long long>(n));
@@ -37,3 +44,18 @@ public:
     }
 };
 // Math
+/*
+C_{m-1+n-1}^{n-1}
+*/
+class Solution {
+public:
+    // 返回值防止溢出
+    unsigned long long uniquePaths(int m, int n) {
+        double res = 1;
+        for(int i = 1;i <= n-1;i++){
+            res = res *( m-1+i) / (double) i;
+        }
+        cout<<res;
+        return res;
+    }
+};
