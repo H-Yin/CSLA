@@ -53,5 +53,32 @@ public:
             }
             return max(root->val+tmp, rob(root->left)+rob(root->right));
         }
+    } 
+};
+/*
+// 优化的方法
+class Solution {
+public:
+   int rob(TreeNode* root) {
+        if (root == NULL) {
+            return 0;
+        }
+        vector<int> result = helper(root);
+        return max(result[0], result[1]);
+    }
+    
+    vector<int> helper(TreeNode* node) {
+        if (node == NULL) {
+            return vector<int>(2,0);
+        }
+        
+        vector<int> left = helper(node->left);
+        vector<int> right = helper(node->right);
+        vector<int> now = vector<int>(2,0);
+        now[0] = max(left[0], left[1]) + max(right[0], right[1]); // 不选当前节点
+        now[1] = left[0] + right[0] + node->val; // 选 当前节点
+
+        return now;
     }
 };
+*/
