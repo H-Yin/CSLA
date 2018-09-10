@@ -22,16 +22,12 @@ public:
         while(low < high){
             temp = numbers[low] + numbers[high];
             if(temp == target){
-                break;
+                return {low+1,high+1};
             }else if(temp > target){
                 high -= 1;
             }else{
                 low += 1;
             }
         }
-        vector<int> res = vector<int>(2,0);
-        res[0] = low+1;
-        res[1] = high+1;
-        return res;
     }
 };
