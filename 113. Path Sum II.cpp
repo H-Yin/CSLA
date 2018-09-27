@@ -33,6 +33,7 @@ Return:
  */
 class Solution {
 public:
+    // 回溯
     vector<vector<int>> pathSum(TreeNode* root, int sum) {
         vector<vector<int>> res;
         vector<int> out;
