@@ -35,3 +35,37 @@ The root-to-leaf path 4->9->1 represents the number 491.
 The root-to-leaf path 4->0 represents the number 40.
 Therefore, sum = 495 + 491 + 40 = 1026.
 */
+/**
+ * Definition for a binary tree node.
+ * struct TreeNode {
+ *     int val;
+ *     TreeNode *left;
+ *     TreeNode *right;
+ *     TreeNode(int x) : val(x), left(NULL), right(NULL) {}
+ * };
+ */
+class Solution {
+public:
+    // 回溯 backtracking
+    int sumNumbers(TreeNode* root) {
+        vector<int> res;
+        int s = 0, sum = 0;
+        sumNumbersDFS(root, s, res);
+        for(int i : res){
+            sum += i;
+        }
+        return sum;
+    }
+    void sumNumbersDFS(TreeNode* root, int s, vector<int> &res){
+        if(root != NULL){
+            s = s*10 + root->val;
+            if(root->left == NULL && root->right == NULL){
+                res.push_back(s);
+            }else{
+                sumNumbersDFS(root->left, s, res);
+                sumNumbersDFS(root->right, s, res);
+            }
+            s = (s-root->val) / 10;
+        }
+    }
+};
